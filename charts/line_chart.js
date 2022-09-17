@@ -81,7 +81,7 @@ export class LineChart {
       .y((d) => this.#yScale(d.value));
 
     this.#lineGroup
-      .data([data])
+      .data(data)
       .transition()
       .duration(250)
       .ease(d3.easeLinear)
@@ -104,7 +104,8 @@ export class LineChart {
     this.#chart.attr("opacity", 0);
   }
 
-  drawChart(dates, data) {
+  drawChart(dates, ...data) {
+    console.log(data)
     this.#setXscale(dates)
       .#setYscale(data)
       .#setXaxis()

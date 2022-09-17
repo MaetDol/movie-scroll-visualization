@@ -92,6 +92,23 @@ async function draw3() {
   lineChart.drawChart(dates, data).show();
 }
 
+async function draw4() {
+  clean('isLine')
+
+  const {
+    data: data2019,
+  } = await getMovieData('2019');
+
+  const {
+    dates: dates, 
+    data: data2020,
+  } = await getMovieData('2020');
+  data2019.forEach(data => 
+    data.date = new Date(data.date.setYear(2020))
+  );
+
+  lineChart.drawChart(dates, data2019, data2020)
+}
 
 /*
   scroller에서 
@@ -102,5 +119,6 @@ const visFuncList = [
   draw1,
   draw2,
   draw3,
+  draw4,
 ];
 scroller(visFuncList)();
